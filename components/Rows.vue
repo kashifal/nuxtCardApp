@@ -68,13 +68,14 @@
                     'md:grid-cols-11': rowIndex > 0
                 }">
                     <div v-for="(image, imageIndex) in row" :key="imageIndex"
-                        class="bg-white rounded-lg shadow-sm py-10 md:px-2 md:py-2 flex flex-col justify-center w-full"
+                        class="bg-white rounded-lg shadow-sm py-10 md:px-2 md:py-2 flex flex-col justify-center w-full cursor-pointer"
                         :class="{
-                            'border-[0.5px] border-[#025144]': imageIndex !== 0  // Add border only if not the first div
-                        }">
+                            'border-[0.5px] border-[#025144]': imageIndex !== 0
+                        }"
+                        @click="openModal(image)">
                         <img :src="image.url" 
                             :alt="image.title" 
-                            class="mx-auto object-cover  md:w-[auto] w-[40%]" />
+                            class="mx-auto object-cover md:w-[auto] w-[40%]" />
                         <p class="text-[8px] sm:text-[9px] md:text-left md:text-[10px] mt-2 text-center">{{ image.title }}</p>
                         <p class="text-[9px] sm:text-[10px] md:text-[12px] text-[#025144] mt-1 md:text-left text-center">{{ image.title }}</p>
                     </div>
@@ -82,9 +83,19 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal is hidden by default and only shows when isModalOpen is true -->
+    <Modal 
+        v-if="isModalOpen" 
+        :selected-image="selectedImage"
+        @close="closeModal" 
+    />
 </template>
 
 <script setup>
+import { ref } from 'vue';
+import Modal from './Modal.vue';
+
 const imageRows = [
     // First row - 6 images
     [
@@ -124,4 +135,18 @@ const imageRows = [
         { url: '/placeholder.png', title: 'Eleven' },
     ],
 ];
+
+// Initialize modal state as false (hidden)
+const isModalOpen = ref(false);
+const selectedImage = ref(null);
+
+const openModal = (image) => {
+    selectedImage.value = image;
+    isModalOpen.value = true;
+};
+
+const closeModal = () => {
+    isModalOpen.value = false;
+    selectedImage.value = null;
+};
 </script>
