@@ -2,7 +2,7 @@
     <div class="flex items-center justify-between mb-8 px-[30px] bg-gray-100  py-[20px]">
         <div class="flex items-center gap-4">
             <img src="/placeholder.png" alt="Logo" class="h-[72px] ">
-            <h1 class="text-[34px] font-bold">NAME OF APP</h1>
+            <h1 class="text-[34px] font-bold">NAME OF APP.</h1>
         </div>
         <div class="flex gap-4">
 
