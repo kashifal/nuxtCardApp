@@ -1,7 +1,7 @@
 <template>
     <div class="">
-        
         <Rows />
+        <Modal />
         <div class="p-6">
             Index
         </div>
