@@ -1,6 +1,7 @@
 <template>
     <div class="">
-        <Navbar />
+        
+        <Rows />
         <div class="p-6">
             Index
         </div>
